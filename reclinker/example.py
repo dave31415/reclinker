@@ -34,11 +34,19 @@ def compute(compare_cl, candidate_links, data_a, data_b):
     return features
 
 
-def classify(features):
+def classify_by_hand(features):
     # Classification step
     matches = features[features.sum(axis=1) > 3]
     n_matches = len(matches)
-    print('n_matches: %s' % n_matches)
+    print('n_matches_by_hand: %s' % n_matches)
+    return matches
+
+
+def classify_ecm(features):
+    ecm = recordlinkage.ECMClassifier()
+    matches = ecm.fit_predict(features)
+    n_matches = len(matches)
+    print('n_matches_ecm: %s' % n_matches)
     return matches
 
 
@@ -48,9 +56,13 @@ def main():
     candidate_links = get_indexer(data_a, data_b)
     compare_cl = get_comparison()
     features = compute(compare_cl, candidate_links, data_a, data_b)
-    matches = classify(features)
+    matches = classify_by_hand(features)
     print('matches')
     print(matches)
+
+    matches_ecm = classify_ecm(features)
+    print('matches_ecm')
+    print(matches_ecm)
 
 
 if __name__ == "__main__":
