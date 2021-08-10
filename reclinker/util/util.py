@@ -1,3 +1,7 @@
+def proc(string):
+    return string.lower().strip()
+
+
 def check_schema(my_dict, schema):
     assert set(my_dict.keys()) == set(schema.keys())
     for key in my_dict.keys():

@@ -1,15 +1,11 @@
 from csv import DictReader
 from reclinker.data_sources.paths import get_file_names
-
-
-def proc(string):
-    return string.lower().strip()
+from reclinker.util.util import proc
 
 
 def stream_nick_names_1():
     filename = get_file_names()['nick_names_1']
     raw_stream = DictReader(open(filename, 'r'))
-    print(next(raw_stream))
     stream = ({'name': proc(row['name']), 'nickname': proc(row['nickname'])} for row in raw_stream)
     return stream
 
@@ -22,8 +18,8 @@ def stream_us_census_nick_names():
             continue
         row = line.split()
         assert len(row) == 3
-        row_dict = {'name': proc(row[0]),
-                    'nickname': proc(row[1]),
+        row_dict = {'name': proc(row[1]),
+                    'nickname': proc(row[0]),
                     'substitution_likelihood': float(proc(row[2]))}
 
         yield row_dict

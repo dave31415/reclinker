@@ -1,10 +1,5 @@
 from reclinker.util.util import check_schema
-from reclinker.data_sources.read_resources import proc, ResourceStreams
-
-
-def test_proc():
-    assert proc('hello there') == 'hello there'
-    assert proc(' Hello   TheRe 1\t\n') == 'hello   there 1'
+from reclinker.data_sources.read_resources import ResourceStreams
 
 
 rs = ResourceStreams()
