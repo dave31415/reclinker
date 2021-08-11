@@ -1,3 +1,6 @@
-recordlinkage
+coverage
 pytest
+pytest-cov
 snakeviz
+recordlinkage
+Faker

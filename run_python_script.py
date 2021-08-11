@@ -8,6 +8,8 @@ def run_python_script(script_name, args, profiler=False):
 
     if script_name == "pipeline":
         from scripts import pipeline as script
+    elif script_name == "name_sim":
+        from scripts import name_sim as script
     else:
         message = "Script_name (%s) unknown" % script_name
         raise ValueError(message)

@@ -1,0 +1,4 @@
+[run]
+omit =
+	reclinker/debugging/*
+    reclinker/example.py
